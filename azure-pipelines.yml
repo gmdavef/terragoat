@@ -32,8 +32,8 @@ steps:
       echo Scanning...
       ./veracode scan --type repo --source https://github.com/gmdavef/terragoat --format json --output ./scan.json
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish da Artifact'
+- task: PublishPipelineArtifact@1
+  displayName: Publish Artifact
   inputs:
-    artifactName: 'veracode-scan-results'
-    pathToPublish: '$(System.DefaultWorkingDirectory)/scan.json'
+    artifactName: veracode-scan-results
+    pathToPublish: $(System.DefaultWorkingDirectory)/scan.json
