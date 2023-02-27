@@ -26,10 +26,10 @@ steps:
       pwd
       export VERACODE_API_KEY_ID=$(VERACODE_API_ID)
       export VERACODE_API_KEY_SECRET=$(VERACODE_API_SECRET)
-      echo installing...
-      curl -fsS https://tools.veracode.com/veracode-cli/install | sh > ./install.log 2>&1
+      echo Installing Veracode cli...
+      curl -fsS https://tools.veracode.com/veracode-cli/install | bash 
       ./veracode version
-      echo scanning...
+      echo Scanning...
       ./veracode scan --type repo --source https://github.com/gmdavef/terragoat --format json --output ./scan.json
 
 - task: PublishBuildArtifacts@1
