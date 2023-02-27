@@ -28,6 +28,7 @@ steps:
       export VERACODE_API_KEY_SECRET=$(VERACODE_API_SECRET)
       echo installing...
       curl -fsS https://tools.veracode.com/veracode-cli/install | sh > ./install.log 2>&1
+      ./veracode version
       echo scanning...
       ./veracode scan --type repo --source https://github.com/gmdavef/terragoat --format table --output ./scan_results.txt
 
