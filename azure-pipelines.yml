@@ -20,13 +20,10 @@ steps:
   inputs:
     targetType: inline
     script: |
-      pwd
       export VERACODE_API_KEY_ID=$(VERACODE_API_ID)
       export VERACODE_API_KEY_SECRET=$(VERACODE_API_SECRET)
       curl -fsS https://tools.veracode.com/veracode-cli/install | bash 
       ./veracode version
-      pwd
-      ls
       ./veracode scan --type directory --source $(System.DefaultWorkingDirectory) --format json --output ./scan.json
 
 - task: PublishPipelineArtifact@1
