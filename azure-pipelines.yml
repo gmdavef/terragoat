@@ -26,11 +26,13 @@ steps:
       pwd
       export VERACODE_API_KEY_ID=$(VERACODE_API_ID)
       export VERACODE_API_KEY_SECRET=$(VERACODE_API_SECRET)
+      echo installing...
       curl -fsS https://tools.veracode.com/veracode-cli/install | sh > ./install.log 2>&1
+      echo scanning...
       ./veracode scan --type repo --source https://github.com/gmdavef/terragoat --format table --output ./scan_results.txt
 
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish da Artifact'
   inputs:
     artifactName: 'veracode-scan-results'
     pathToPublish: '$(System.DefaultWorkingDirectory)/scan_results.txt'
-  displayName: 'Publish da Artifact'
