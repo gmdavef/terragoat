@@ -30,10 +30,10 @@ steps:
       curl -fsS https://tools.veracode.com/veracode-cli/install | sh > ./install.log 2>&1
       ./veracode version
       echo scanning...
-      ./veracode scan --type repo --source https://github.com/gmdavef/terragoat --format table --output ./scan_results.txt
+      ./veracode scan --type repo --source https://github.com/gmdavef/terragoat --format json --output ./scan.json
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish da Artifact'
   inputs:
     artifactName: 'veracode-scan-results'
-    pathToPublish: '$(System.DefaultWorkingDirectory)/scan_results.txt'
+    pathToPublish: '$(System.DefaultWorkingDirectory)/scan.json'
